@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Edit Tracker{% endblock %}
+
+{% block body %}
+
+<form method="post">
+    <h3 align="center"></h3>
+    <div class="form-group">
+        <h2>Edit Tracker</h2>
+        <br>
+        <div align="center">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Enter tracker name" maxlength="30" value="{{ tracker.name }}" required />
+
+            <label for="type">Tracker Type</label>
+            <select id="type" class="form-control" name="type" required disabled>
+                <option value="{{ tracker.tracker_type }}">{{ tracker.tracker_type }}</option>
+                <option value="Numerical">Numerical</option>
+                <option value="Multiple Choice">Multiple Choice</option>
+                <option value="Temperature">Temperature</option>
+            </select>
+
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" name="description" placeholder="Enter tracker description" maxlength="200">{{ tracker.description }}</textarea>
+
+            <label for="settings">Additional settings</label>
+            <input type="text" class="form-control" id="settings" name="settings" placeholder="Enter any additional settting is you want" maxlength="80" value="{{ tracker.setting }}" />
+            
+            <br>
+
+            <button type="submit" class="btn btn-dark text-light">Update Tracker</button>
+        </div>
+    </div>
+</form>
+
+
+
+{% endblock %}

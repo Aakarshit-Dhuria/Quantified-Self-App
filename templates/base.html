@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content = "width=device-width,initial-scale=1"
+        
+        <!-- Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous"/>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        {% block style %}
+        {% endblock %}
+        <title>{% block title %}Home{% endblock %}</title>
+        <style>
+          .main-content {
+            height: calc(100vh - 115px);
+            display: flex;
+            flex-direction: column;
+            /* justify-content: center; */
+            align-items: center;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            padding: 20px;
+          }
+          .app-contanier {
+            position: relative;
+            max-height: 100vh;
+            overflow: hidden;
+          }
+          .app-header {
+            position: sticky;
+            top: 0;
+          }
+          .app-footer {
+            position: sticky;
+            bottom: 0px;
+          }
+
+          .bg-dark {
+            background-color: black !important;
+          }
+        </style>
+    </head>
+
+    <body>
+
+
+<div class="container vh-100 app-contanier"> 
+  {% if user %}
+  <nav class="navbar navbar-expand-lg navbar-light bg-dark p-3 app-header">
+  <div class="d-flex align-items-center justify-content-end w-100 text-light">
+    <button class="btn btn-dark-outline mx-3 my-sm-0" type="submit">
+      <a class="text-light" href="{{ url_for('views.index') }}">
+      <!-- <span> -->
+      Hello {{ user.name }}
+      <!-- </span>  -->
+      </a>
+    </button>
+    <button class="btn btn-dark-outline mx-3 my-sm-0" type="submit">
+        <a class="text-light" href="{{ url_for('auth.logout') }}">
+            Logout
+        </a>
+    </button>
+  </div>
+</nav>
+{% else %}
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+  <div class="d-flex align-items-center justify-content-end w-100 text-light">
+    <span>
+      Login
+    </span> 
+  </div>
+</nav>
+{% endif %}
+<div class="main-content">
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+  {% endwith %}
+  {% block body %} 
+  {% endblock %}
+</div>
+<div class="bg-dark p-3 app-footer">
+  <!-- Copyright -->
+  <div class="text-light mb-3 mb-md-0">
+      Copyright © 2022. All rights reserved.
+  </div>
+
+</div>
+</div>
+        
+    </body>
+</html>

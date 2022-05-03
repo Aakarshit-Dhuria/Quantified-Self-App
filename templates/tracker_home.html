@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Dashboard {% endblock %}
+
+{% block body %}
+
+<div class="w-100">
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Tracker</th>
+                <th scope="col">Description</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for tracker in trackers %}
+            {% if tracker.user_id == user.id %}
+                <tr>
+                    {% set tracker_id=tracker.id %}
+                    <td><a href="{{ url_for('views.view_tracker_logs',record_id=tracker_id) }}">{{ tracker.name  }}</a></td>
+                    <td>{{ tracker.description  }}</td>
+                    <td><a href="{{ url_for('views.add_log',record_id=tracker_id) }}" class="btn">Add log</a></td>
+                    <td>
+                        <button class="btn btn-dark">
+                        <a class="text-light" href="{{ url_for('views.edit_tracker',record_id=tracker_id) }}">Edit Tracker</a>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn btn-dark">
+                        <a class="text-light" href="{{ url_for('views.delete_tracker',record_id=tracker_id) }}">Delete Tracker</a>
+                        </button>
+                    </td>
+                </tr>
+            {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+    <div align="center">
+        <a href="/add-tracker" class="btn btn-dark">Add Tracker</a>
+    </div>
+</div>
+
+{% endblock %}

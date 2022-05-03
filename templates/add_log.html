@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Add Log{% endblock %}
+
+{% block body %} 
+    <form method="post">
+        <h3 align="center"></h3>
+        <div class="form-group">
+            <h2>Log {{ tracker.name }}</h2>
+            <br>
+            <div align="center">
+                <label for="date">When: </label>
+                <input type="datetime-local" class="form-control" id="date" name="date" value="{{ now }}"  required />
+                <label for="value">Value: </label><br>
+                
+                {% if tracker.tracker_type == 'Numerical' %}
+                    <input type="number" id="value" name="value" placeholder="Enter number: " maxlength="30" required />
+                {% endif %}
+
+                {% if tracker.tracker_type == "Multiple Choice" %}
+                    <select id="value" class="form-control" name="value" required>
+                        {% set options = tracker.setting.split(",") %}
+                        {% for setting in options %}
+                        <option value="{{ setting }}">{{setting}}</option>
+                        {% endfor %}
+                    </select>
+                {% endif %}
+    
+                {% if tracker.tracker_type == "Temperature" %}
+                <input type="range" class="form-range" id="value" name="value" placeholder="Enter Temperature: " min="0" max="50" oninput="this.nextElementSibling.value = this.value"  maxlength="30" required />
+                <output>25</output>
+                {% endif %}
+                <br>
+                </tr>
+                <label for="notes">Notes: </label>
+                <textarea class="form-control" id="notes" name="notes" placeholder="Enter notes" maxlength="200"></textarea>
+                <br>
+                <button type="submit" class="btn btn-dark text-light">Add Log</a>
+            </div>
+        </div>
+    </form>
+{% endblock %}

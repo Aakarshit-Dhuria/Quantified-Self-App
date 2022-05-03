@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block style %}
+
+<style>
+.login-section {
+    display: flex;  
+    align-items: center;
+    height: 100%;
+    margin: 0;
+    max-height: 100;
+}
+</style>
+
+{% endblock %}
+
+{% block title %} Login Page {% endblock %}
+{% block body %}
+    <h1 class=".font-weight-bold">Quantified Self App</h1> 
+    <section class="login-section">
+        <div class="col-12 m-auto">
+            <div class="d-flex justify-content-center align-items-center">
+                <div class="col-6">
+                    <img width="80%" src="../static/images/tracker-logo.png" class="img-fluid" alt="App Main Image">
+                </div>
+                <div class="col-6">
+                    <form method="post">
+                        <!-- Name Input -->
+                        <div class="form-outline mb-3">
+                            <label class="form-label" for="form3Example3">Name</label>
+                            <input type="text" name="name" id="form3Example3" class="form-control" placeholder="Enter your name"/>
+                        </div>
+                        <!-- Password Input -->
+                        <div class="form-outline mb-3">
+                            <label class="form-label">Password</label>
+                            <input type="password" name="password"  class="form-control" placeholder="Enter your password"/>
+                        </div>
+
+                        <div class="text-center text-lg-start mt-4 pt-2">
+                            <button type="submit" class="w-100 btn btn-dark" value="Submit Form">Login</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

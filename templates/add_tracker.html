@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Add Tracker{% endblock %}
+
+{% block body %}
+<form method="post" class="">
+    <div class="form-group">
+        <h2>Add Tracker</h2>
+        <br>
+        <div align="center">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Enter tracker name" maxlength="30" required />
+
+            <label for="type">Tracker Type</label>
+            <select id="type" class="form-control" name="type" required>
+                <option value="Numerical">Numerical</option>
+                <option value="Multiple Choice">Multiple Choice</option>
+                <option value="Temperature">Temperature</option>
+            </select>
+
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" name="description" placeholder="Enter tracker description" maxlength="200"></textarea>
+
+            <label for="settings">Additional settings</label>
+            <textarea class="form-control" id="settings" name="settings" placeholder="Enter tracker settings" maxlength="200"></textarea>
+
+            <br>
+
+            <button type="submit" class="btn btn-dark text-light">Add Tracker</button>
+        </div>
+    </div>
+</form>
+
+
+
+{% endblock %}
